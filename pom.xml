@@ -28,13 +28,24 @@
 	</scm>
 	<properties>
 		<java.version>22</java.version>
+		<record-builder.version>37</record-builder.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>false</optional>
+		</dependency>
+		<dependency>
+			<groupId>io.soabase.record-builder</groupId>
+			<artifactId>record-builder-core</artifactId>
+			<version>${record-builder.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -43,12 +54,78 @@
 	</dependencies>
 
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- TODO: enable this if we need pattern matching
+				<configuration>
+					<jvmArguments>- -enable-preview</jvmArguments>
+				</configuration>
+				-->
+			</plugin>
+			<!--
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.10</version>
+				<configuration>
+					<excludes>
+						<exclude>in/stonecolddev/umumumum/configuration/**/*</exclude>
+						<exclude>in/stonecolddev/umumumum/**/*Builder*.class</exclude>
+						<exclude>in/stonecolddev/umumumum/UmumumumApplication.class</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<release>${java.version}</release>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<!-- TODO: enable this if we need pattern matching
+					<compilerArgs>- -enable-preview</compilerArgs>
+					-->
+					<annotationProcessorPaths>
+						<path>
+							<groupId>io.soabase.record-builder</groupId>
+							<artifactId>record-builder-processor</artifactId>
+							<version>${record-builder.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M7</version>
+				<!-- TODO: enable this if we need pattern matching
+				<configuration>
+					<argLine>@{argLine} - -enable-preview</argLine>
+					<reuseForks>false</reuseForks>
+					<forkCount>2</forkCount>
+				</configuration>
+				-->
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
