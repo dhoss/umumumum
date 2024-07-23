@@ -118,6 +118,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M7</version>
+				<configuration>
+					<argLine>-XX:+EnableDynamicAgentLoading</argLine>
+				</configuration>
 				<!-- TODO: enable this if we need pattern matching
 				<configuration>
 					<argLine>@{argLine} - -enable-preview</argLine>
