@@ -1,0 +1,8 @@
+spring:
+  config:
+    activate:
+      on-profile: unit-test
+logging:
+  level:
+    in.stonecolddev: DEBUG
+    org.springframework.jdbc.core: TRACE

@@ -5,3 +5,4 @@ spring:
 logging:
   level:
     org.springframework.jdbc.core: TRACE
+    in.stonecolddev: DEBUG
