@@ -1,6 +1,5 @@
 package in.stonecold.umumumum.api.v1.post;
 
-import in.stonecold.umumumum.api.v1.PostNodeBuilder;
 import io.soabase.recordbuilder.core.RecordBuilder;
 
 import java.time.OffsetDateTime;
