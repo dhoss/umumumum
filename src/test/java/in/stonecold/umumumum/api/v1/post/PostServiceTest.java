@@ -26,7 +26,7 @@ public class PostServiceTest {
 
   @Test
   public void find() {
-    assertEquals(Optional.of(expectedPost), ps.find(1));
+    assertEquals(Optional.of(expectedPost), ps.find(expectedPost.id()));
   }
 
 }
