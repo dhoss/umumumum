@@ -8,12 +8,18 @@ import java.util.Optional;
 @Service
 public class PostService implements PostStorage {
 
+  private final PostRepository postRepository;
+
+  public PostService(PostRepository postRepository) {
+    this.postRepository = postRepository;
+  }
+
   public PostNode create(PostNode post) {
-    return post;
+    return postRepository.save(post);
   }
 
   public Optional<PostNode> find(Integer postId) {
-    return Optional.empty();
+    return postRepository.findById(postId);
   }
 
 }

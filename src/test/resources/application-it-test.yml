@@ -2,6 +2,14 @@ spring:
   config:
     activate:
       on-profile: it-test
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      jdbc-url: >
+        jdbc:tc:postgresql:15:///umumumum?TC_INITSCRIPT=db/setup.sql
+      pool-name: umumumum-pool
+      username: umumumum
+      password: umumumum
 logging:
   level:
     in.stonecolddev: DEBUG

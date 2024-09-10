@@ -2,6 +2,15 @@ spring:
   config:
     activate:
       on-profile: unit-test
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      jdbc-url: >
+        jdbc:tc:postgresql:15:///4um
+      pool-name: 4um-pool
+      username: 4um
+      password: 4um
+
 logging:
   level:
     in.stonecolddev: DEBUG
